@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="VextonProject — Agencia de IA. Webs, automatización con n8n, auditorías y prospección de clientes.">
   <title>VextonProject — Automatiza el presente. Domina el futuro.</title>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="assets/site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -84,11 +89,12 @@
     }
     .hero-blob {
       position: absolute; border-radius: 50%;
-      background: radial-gradient(circle, rgba(201,150,44,.13) 0%, transparent 70%);
-      filter: blur(70px); pointer-events: none; will-change: transform;
+      background: radial-gradient(circle, rgba(201,150,44,.11) 0%, transparent 70%);
+      filter: blur(40px); pointer-events: none;
+      will-change: transform; transform: translateZ(0);
     }
-    .hero-blob-1 { width: 560px; height: 560px; top: 5%; left: 15%; }
-    .hero-blob-2 { width: 420px; height: 420px; bottom: 10%; right: 10%; opacity: .7; }
+    .hero-blob-1 { width: 500px; height: 500px; top: 5%; left: 15%; }
+    .hero-blob-2 { width: 380px; height: 380px; bottom: 10%; right: 10%; opacity: .65; }
 
     .hero-inner { position: relative; z-index: 2; text-align: center; max-width: 900px; }
 
@@ -328,10 +334,10 @@
     .f-copy { font-size: .8rem; color: var(--gray-3); }
 
     /* ── SCROLL ANIMATIONS ── */
-    .reveal       { opacity: 0; transform: translateY(40px);  transition: opacity .85s cubic-bezier(.16,1,.3,1), transform .85s cubic-bezier(.16,1,.3,1); }
-    .reveal-left  { opacity: 0; transform: translateX(-40px); transition: opacity .85s cubic-bezier(.16,1,.3,1), transform .85s cubic-bezier(.16,1,.3,1); }
-    .reveal-right { opacity: 0; transform: translateX(40px);  transition: opacity .85s cubic-bezier(.16,1,.3,1), transform .85s cubic-bezier(.16,1,.3,1); }
-    .reveal.in, .reveal-left.in, .reveal-right.in { opacity: 1; transform: none; }
+    .reveal       { opacity: 0; transform: translateY(32px);  will-change: opacity, transform; transition: opacity .75s cubic-bezier(.16,1,.3,1), transform .75s cubic-bezier(.16,1,.3,1); }
+    .reveal-left  { opacity: 0; transform: translateX(-32px); will-change: opacity, transform; transition: opacity .75s cubic-bezier(.16,1,.3,1), transform .75s cubic-bezier(.16,1,.3,1); }
+    .reveal-right { opacity: 0; transform: translateX(32px);  will-change: opacity, transform; transition: opacity .75s cubic-bezier(.16,1,.3,1), transform .75s cubic-bezier(.16,1,.3,1); }
+    .reveal.in, .reveal-left.in, .reveal-right.in { opacity: 1; transform: none; will-change: auto; }
     [data-d="1"] { transition-delay: .1s; }
     [data-d="2"] { transition-delay: .2s; }
     [data-d="3"] { transition-delay: .3s; }
@@ -400,6 +406,41 @@
     .f-legal-btn { background: none; border: none; color: var(--gray-3); font-family: 'Space Grotesk', sans-serif; font-size: .75rem; cursor: pointer; padding: 0; transition: color .3s; letter-spacing: .02em; text-decoration: underline; text-decoration-color: transparent; transition: color .3s, text-decoration-color .3s; }
     .f-legal-btn:hover { color: var(--gold); text-decoration-color: var(--gold); }
 
+    /* ── NAV LOGO ── */
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo-img { width: 30px; height: 30px; border-radius: 6px; display: block; flex-shrink: 0; }
+    .nav-logo-text { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; color: var(--white); }
+    .nav-logo-text span { color: var(--gold); }
+
+    /* ── HERO LOGO ── */
+    .hero-logo-wrap { margin-bottom: 32px; }
+    .hero-logo-img { width: 72px; height: 72px; border-radius: 16px; display: block; margin: 0 auto; }
+
+    /* ── FORM FEEDBACK ── */
+    .form-success {
+      text-align: center; padding: 56px 32px;
+      border: 1px solid var(--gold-border); background: var(--gold-bg);
+    }
+    .form-success .fs-icon {
+      width: 56px; height: 56px; border: 2px solid var(--gold);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; color: var(--gold); margin: 0 auto 20px;
+    }
+    .form-success h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 10px; }
+    .form-success p  { font-size: .9375rem; color: var(--gray-3); }
+    .form-error { font-size: .85rem; color: #e07070; padding: 12px 16px; border: 1px solid rgba(224,112,112,.3); background: rgba(224,112,112,.06); margin-bottom: 4px; }
+
+    /* ── CONTENT VISIBILITY (secciones fuera del viewport) ── */
+    #servicios, #proceso, #contacto { content-visibility: auto; contain-intrinsic-size: 0 600px; }
+
+    /* ── REDUCED MOTION ── */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .reveal-left, .reveal-right { transition: none; opacity: 1; transform: none; }
+      .hero-blob { animation: none; }
+      .scroll-line { animation: none; }
+      #heroInner { transition: none !important; opacity: 1 !important; transform: none !important; }
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       :root { --pad: 80px; }
@@ -427,7 +468,10 @@
 
 <!-- NAV -->
 <nav class="nav" id="nav">
-  <a href="#inicio" class="nav-logo">Vexton<span>Project</span></a>
+  <a href="#inicio" class="nav-logo">
+    <img src="assets/android-chrome-192x192.png" alt="VextonProject" class="nav-logo-img">
+    <span class="nav-logo-text">Vexton<span>Project</span></span>
+  </a>
   <ul class="nav-links">
     <li><a href="#sobre">Nosotros</a></li>
     <li><a href="#servicios">Servicios</a></li>
@@ -444,6 +488,9 @@
   <div class="hero-blob hero-blob-2" data-speed="0.18"></div>
 
   <div class="hero-inner" id="heroInner">
+    <div class="hero-logo-wrap">
+      <img src="assets/android-chrome-192x192.png" alt="VextonProject" class="hero-logo-img">
+    </div>
     <div class="eyebrow">Agencia de Inteligencia Artificial</div>
     <h1 class="hero-title">
       <span class="t1">Vexton</span>
@@ -709,24 +756,29 @@
       </div>
 
       <div class="reveal-right">
-        <form class="form" onsubmit="return false;">
+        <form class="form" id="contactForm">
+          <!-- Web3Forms: ve a web3forms.com, pon tu email y pega aquí la clave que te den -->
+          <input type="hidden" name="access_key" value="[TU_WEB3FORMS_KEY]">
+          <input type="hidden" name="subject" value="Nuevo contacto desde VextonProject">
+          <input type="hidden" name="from_name" value="VextonProject Web">
+          <input type="checkbox" name="botcheck" style="display:none">
           <div class="form-row">
             <div class="fg">
               <label for="nombre">Nombre</label>
-              <input type="text" id="nombre" placeholder="Tu nombre">
+              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
             </div>
             <div class="fg">
               <label for="empresa">Empresa</label>
-              <input type="text" id="empresa" placeholder="Tu empresa">
+              <input type="text" id="empresa" name="empresa" placeholder="Tu empresa">
             </div>
           </div>
           <div class="fg">
             <label for="email">Email</label>
-            <input type="email" id="email" placeholder="tu@email.com">
+            <input type="email" id="email" name="email" placeholder="tu@email.com" required>
           </div>
           <div class="fg">
             <label for="servicio">Servicio de interés</label>
-            <select id="servicio">
+            <select id="servicio" name="servicio">
               <option value="" disabled selected>Selecciona un servicio</option>
               <option>Web Profesional</option>
               <option>Automatización con n8n</option>
@@ -737,7 +789,7 @@
           </div>
           <div class="fg">
             <label for="msg">Cuéntanos tu proyecto</label>
-            <textarea id="msg" placeholder="Describe brevemente qué necesitas..."></textarea>
+            <textarea id="msg" name="message" placeholder="Describe brevemente qué necesitas..." required></textarea>
           </div>
           <button type="submit" class="btn-submit">Enviar mensaje →</button>
         </form>
@@ -939,13 +991,20 @@
     nav.classList.toggle('scrolled', window.scrollY > 60);
   }, { passive: true });
 
-  // Parallax blobs
+  // Parallax blobs — throttled con RAF para no bloquear el hilo principal
   const blobs = document.querySelectorAll('.hero-blob[data-speed]');
+  let blobRaf = false;
   window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    blobs.forEach(b => {
-      b.style.transform = `translateY(${y * parseFloat(b.dataset.speed)}px)`;
-    });
+    if (!blobRaf) {
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        blobs.forEach(b => {
+          b.style.transform = `translateY(${y * parseFloat(b.dataset.speed)}px) translateZ(0)`;
+        });
+        blobRaf = false;
+      });
+      blobRaf = true;
+    }
   }, { passive: true });
 
   // Reveal on scroll
@@ -1026,6 +1085,43 @@
     if (e.key === 'Escape') {
       document.querySelectorAll('.lmodal.open').forEach(m => m.classList.remove('open'));
       document.body.style.overflow = '';
+    }
+  });
+
+  // Contact form — Web3Forms
+  document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('.btn-submit');
+    const orig = btn.textContent;
+    btn.textContent = 'Enviando...';
+    btn.disabled = true;
+    // Elimina error previo si existe
+    const prevErr = this.querySelector('.form-error');
+    if (prevErr) prevErr.remove();
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: new FormData(this),
+        headers: { Accept: 'application/json' }
+      });
+      const data = await res.json();
+      if (data.success) {
+        this.innerHTML = `<div class="form-success">
+          <div class="fs-icon">✓</div>
+          <h3>Mensaje enviado</h3>
+          <p>Gracias por escribirnos. Te responderemos en menos de 24 horas.</p>
+        </div>`;
+      } else {
+        throw new Error(data.message || 'Error desconocido');
+      }
+    } catch {
+      btn.textContent = orig;
+      btn.disabled = false;
+      const err = document.createElement('div');
+      err.className = 'form-error';
+      err.textContent = 'No se pudo enviar el mensaje. Escríbenos directamente a victorsanro06@gmail.com';
+      btn.before(err);
     }
   });
 
